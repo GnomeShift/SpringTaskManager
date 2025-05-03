@@ -47,22 +47,23 @@ gradlew bootRun
 > Убедитесь, что у Вас установлен Gradle.
 
 # 📡API
+**baseUrl для отправки запросов**
+> http://localhost:8080/{api_endpoint}
+
 В таблице ниже приведены доступные API-Endpoints.
 
-| API-Endpoint                 | Метод  | Описание                     | Тело запроса                                                                                                              |
-|------------------------------|--------|------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| **/api/users**               | GET    | Найти всех пользователей     | -                                                                                                                         |
-| **/api/users/{id}**          | GET    | Найти пользователя по ID     | -                                                                                                                         |
-| **/api/users**               | POST   | Создать пользователя         | `{ "name": "NAME", "email": "mail@example.com", "password": "PASSWORD" }`                                                 |
-| **/api/users/{id}**          | PUT    | Обновить пользователя        | `{ "name": "NAME UPDATED", "email": "mail.updated@example.com", "password": "PASSWORD" }`                                 |
-| **/api/users/{id}**          | DELETE | Удалить пользователя         | -                                                                                                                         |
-| **/api/tasks**               | GET    | Найти все задачи             | -                                                                                                                         |
-| **/api/tasks/owned/{id}**    | GET    | Найти задачу по ID           | -                                                                                                                         |
-| **/api/tasks/assigned/{id}** | GET    | Найти задачу по владельцу    | -                                                                                                                         |
-| **/api/tasks**               | GET    | Найти задачу по назначенному | -                                                                                                                         |
-| **/api/tasks**               | POST   | Создать новую задачу         | `{ "title": "TITLE", "description": "DESCRIPTION", "status": "NEW/IN_PROGRESS/DONE", "ownerId": "UUID" }`                 |
-| **/api/tasks/{id}**          | PUT    | Обновить задачу              | `{ "title": "TITLE UPDATED", "description": "DESCRIPTION UPDATED", "status": "NEW/IN_PROGRESS/DONE", "ownerId": "UUID" }` |
-| **/api/tasks/{id}**          | DELETE | Удалить задачу               | -                                                                                                                         |
-
-IP-адрес для отправки запросов:
-> http://localhost:8080/{api_endpoint}
+| API-Endpoint                          | Метод  | Роль  | Описание                     | Тело запроса                                                                                                              |
+|---------------------------------------|--------|-------|------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| {baseUrl}**/api/auth/register**       | POST   | -     | Регистрация пользователя     |                                                                                                                           |
+| {baseUrl}**/api/auth/login**          | POST   | -     | Авторизация пользователя     |                                                                                                                           |
+| {baseUrl}**/api/users**               | GET    | ADMIN | Поиск всех пользователей     | -                                                                                                                         |
+| {baseUrl}**/api/users/{id}**          | GET    | USER  | Поиск пользователя по ID     | -                                                                                                                         |
+| {baseUrl}**/api/users/{id}**          | PUT    | USER  | Обновление пользователя      | `{ "name": "NAME UPDATED", "email": "mail.updated@example.com", "password": "PASSWORD" }`                                 |
+| {baseUrl}**/api/users/{id}**          | DELETE | ADMIN | Удаление пользователя        | -                                                                                                                         |
+| {baseUrl}**/api/tasks**               | GET    | ADMIN | Поиск всех задач             | -                                                                                                                         |
+| {baseUrl}**/api/tasks/owned/{id}**    | GET    | USER  | Поиск задачи по ID           | -                                                                                                                         |
+| {baseUrl}**/api/tasks/assigned/{id}** | GET    | USER  | Поиск задачи по владельцу    | -                                                                                                                         |
+| {baseUrl}**/api/tasks**               | GET    | USER  | Поиск задачи по назначенному | -                                                                                                                         |
+| {baseUrl}**/api/tasks**               | POST   | USER  | Создание новой задачи        | `{ "title": "TITLE", "description": "DESCRIPTION", "status": "NEW/IN_PROGRESS/DONE", "ownerId": "UUID" }`                 |
+| {baseUrl}**/api/tasks/{id}**          | PUT    | USER  | Обновление задачи            | `{ "title": "TITLE UPDATED", "description": "DESCRIPTION UPDATED", "status": "NEW/IN_PROGRESS/DONE", "ownerId": "UUID" }` |
+| {baseUrl}**/api/tasks/{id}**          | DELETE | USER  | Удаление задачи              | -                                                                                                                         |
