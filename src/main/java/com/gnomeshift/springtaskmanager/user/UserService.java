@@ -34,14 +34,6 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 
-    public User addUser(User user) {
-        return userRepository.save(user);
-    }
-
-    public boolean existsById(UUID id) {
-        return userRepository.existsById(id);
-    }
-
     public User updateUser(UUID id, User user) {
         Optional<User> userOptional = userRepository.findById(id);
 

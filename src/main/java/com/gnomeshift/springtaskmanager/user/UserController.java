@@ -30,11 +30,6 @@ public class UserController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody @Valid User user) {
-        return ResponseEntity.ok(userService.addUser(user));
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable UUID id, @Valid @RequestBody User user) {
         try {
