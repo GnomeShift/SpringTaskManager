@@ -10,6 +10,7 @@ import lombok.Data;
 import com.gnomeshift.springtaskmanager.task.Task;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.List;
 import java.util.UUID;
@@ -33,10 +34,15 @@ public class User {
     @Size(max = 100)
     private String email;
 
-    @Size(min = 8)
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[a-zA-Z\\d!@#$%^&*()_+{}\\[\\]:;<>,.?~`\"'|\\\\/-]{8,}$")
     @NotNull
     private String password;
+
+    @NotNull
+    @Column(columnDefinition = "integer default 0")
+    private int failedLoginAttempt;
+
+    private LocalDateTime lockTime;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",

@@ -9,13 +9,13 @@ public class RoleInitializer {
     @Bean
     public CommandLineRunner initializeRoles(RoleRepository roleRepository) {
         return args -> {
-            if(roleRepository.count() == 0) {
+            if (roleRepository.count() == 0) {
                 Role adminRole = new Role();
-                adminRole.setName(Roles.ROLE_ADMIN);
+                adminRole.setName(Roles.ADMIN);
                 roleRepository.save(adminRole);
 
                 Role userRole = new Role();
-                userRole.setName(Roles.ROLE_USER);
+                userRole.setName(Roles.USER);
                 roleRepository.save(userRole);
             }
         };

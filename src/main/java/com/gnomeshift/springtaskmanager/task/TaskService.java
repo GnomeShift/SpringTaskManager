@@ -105,9 +105,6 @@ public class TaskService {
                     .orElseThrow(() -> new EntityNotFoundException("Assignee not found"));
             task.setAssignee(assignee);
         }
-        else {
-            task.setAssignee(null);
-        }
 
         return convertToDto(taskRepository.save(task));
     }
