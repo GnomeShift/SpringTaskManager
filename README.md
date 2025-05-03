@@ -49,18 +49,20 @@ gradlew bootRun
 # 📡API
 В таблице ниже приведены доступные API-Endpoints.
 
-| API-Endpoint        | Метод  | Описание                    | Тело запроса                                                                                                              |
-|---------------------|--------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| **/api/users**      | GET    | Получить всех пользователей | -                                                                                                                         |
-| **/api/users/{id}** | GET    | Получить пользователя по ID | -                                                                                                                         |
-| **/api/users**      | POST   | Создать пользователя        | `{ "name": "NAME", "email": "mail@example.com", "password": "PASSWORD" }`                                                 |
-| **/api/users/{id}** | PUT    | Обновить пользователя       | `{ "name": "NAME UPDATED", "email": "mail.updated@example.com", "password": "PASSWORD" }`                                 |
-| **/api/users/{id}** | DELETE | Удалить пользователя        | -                                                                                                                         |
-| **/api/tasks**      | GET    | Получить все задачи         | -                                                                                                                         |
-| **/api/tasks/{id}** | GET    | Получить задачу по ID       | -                                                                                                                         |
-| **/api/tasks**      | POST   | Создать новую задачу        | `{ "title": "TITLE", "description": "DESCRIPTION", "status": "NEW/IN_PROGRESS/DONE", "ownerId": "UUID" }`                 |
-| **/api/tasks/{id}** | PUT    | Обновить задачу             | `{ "title": "TITLE UPDATED", "description": "DESCRIPTION UPDATED", "status": "NEW/IN_PROGRESS/DONE", "ownerId": "UUID" }` |
-| **/api/tasks/{id}** | DELETE | Удалить задачу              | -                                                                                                                         |
+| API-Endpoint                 | Метод  | Описание                     | Тело запроса                                                                                                              |
+|------------------------------|--------|------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **/api/users**               | GET    | Найти всех пользователей     | -                                                                                                                         |
+| **/api/users/{id}**          | GET    | Найти пользователя по ID     | -                                                                                                                         |
+| **/api/users**               | POST   | Создать пользователя         | `{ "name": "NAME", "email": "mail@example.com", "password": "PASSWORD" }`                                                 |
+| **/api/users/{id}**          | PUT    | Обновить пользователя        | `{ "name": "NAME UPDATED", "email": "mail.updated@example.com", "password": "PASSWORD" }`                                 |
+| **/api/users/{id}**          | DELETE | Удалить пользователя         | -                                                                                                                         |
+| **/api/tasks**               | GET    | Найти все задачи             | -                                                                                                                         |
+| **/api/tasks/owned/{id}**    | GET    | Найти задачу по ID           | -                                                                                                                         |
+| **/api/tasks/assigned/{id}** | GET    | Найти задачу по владельцу    | -                                                                                                                         |
+| **/api/tasks**               | GET    | Найти задачу по назначенному | -                                                                                                                         |
+| **/api/tasks**               | POST   | Создать новую задачу         | `{ "title": "TITLE", "description": "DESCRIPTION", "status": "NEW/IN_PROGRESS/DONE", "ownerId": "UUID" }`                 |
+| **/api/tasks/{id}**          | PUT    | Обновить задачу              | `{ "title": "TITLE UPDATED", "description": "DESCRIPTION UPDATED", "status": "NEW/IN_PROGRESS/DONE", "ownerId": "UUID" }` |
+| **/api/tasks/{id}**          | DELETE | Удалить задачу               | -                                                                                                                         |
 
 IP-адрес для отправки запросов:
 > http://localhost:8080/{api_endpoint}
