@@ -29,6 +29,26 @@ public class TaskController {
         }
     }
 
+    @GetMapping("/owned/{id}")
+    public ResponseEntity<List<TaskDTO>> getAllTasksByOwnerId(@PathVariable UUID id) {
+        try {
+            return ResponseEntity.ok(taskService.getAllTasksByOwnerId(id));
+        }
+        catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/assigned/{id}")
+    public ResponseEntity<List<TaskDTO>> getAllTasksByAssigneeId(@PathVariable UUID id) {
+        try {
+            return ResponseEntity.ok(taskService.getAllTasksByAssigneeId(id));
+        }
+        catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<TaskDTO> addTask(@RequestBody TaskDTO taskDTO) {
         return ResponseEntity.ok().body(taskService.addTask(taskDTO));

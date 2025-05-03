@@ -1,7 +1,5 @@
 package com.gnomeshift.springtaskmanager.user;
 
-import com.gnomeshift.springtaskmanager.task.TaskDTO;
-import com.gnomeshift.springtaskmanager.task.TaskService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +15,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private TaskService taskService;
-
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
@@ -33,24 +28,6 @@ public class UserController {
         catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-    }
-
-    @GetMapping("/owned/{id}")
-    public ResponseEntity<List<TaskDTO>> getAllTasksByOwnerId(@PathVariable UUID id) {
-        if (!userService.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(taskService.getAllTasksByOwnerId(id));
-    }
-
-    @GetMapping("/assigned/{id}")
-    public ResponseEntity<List<TaskDTO>> getAllTasksByAssigneeId(@PathVariable UUID id) {
-        if (!userService.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(taskService.getAllTasksByAssigneeId(id));
     }
 
     @PostMapping
