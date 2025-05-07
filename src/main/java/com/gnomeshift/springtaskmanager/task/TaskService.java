@@ -35,7 +35,7 @@ public class TaskService {
             ownerDTO.setName(task.getOwner().getName());
             ownerDTO.setEmail(task.getOwner().getEmail());
             ownerDTO.setRoles(task.getOwner().getRoles());
-            dto.setOwner(ownerDTO);
+            dto.setOwnerId(ownerDTO.getId());
         }
 
         if (task.getAssignee() != null) {
@@ -45,7 +45,7 @@ public class TaskService {
             assigneeDTO.setName(task.getAssignee().getName());
             assigneeDTO.setEmail(task.getAssignee().getEmail());
             assigneeDTO.setRoles(task.getAssignee().getRoles());
-            dto.setAssignee(assigneeDTO);
+            dto.setAssigneeId(assigneeDTO.getId());
         }
 
         return dto;
@@ -104,9 +104,6 @@ public class TaskService {
             User assignee = userRepository.findById(taskDTO.getAssigneeId())
                     .orElseThrow(() -> new EntityNotFoundException("Assignee not found"));
             task.setAssignee(assignee);
-        }
-        else {
-            task.setAssignee(null);
         }
 
         return convertToDto(taskRepository.save(task));
