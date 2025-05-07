@@ -71,7 +71,12 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
                                 .requestMatchers("/api/tasks/**").authenticated()
                                 .requestMatchers(HttpMethod.GET, "/api/tasks").hasRole("ADMIN")
-                                .anyRequest().hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/register").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/login").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/dashboard").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/tasks/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/admin").permitAll()
+                                .anyRequest().permitAll()
                 );
 
         http.authenticationProvider(authenticationProvider());
