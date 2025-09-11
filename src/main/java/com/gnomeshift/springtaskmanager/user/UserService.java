@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -34,16 +33,13 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 
-    public User updateUser(UUID id, User user) {
-        Optional<User> userOptional = userRepository.findById(id);
+    public UserDTO updateUser(UUID id, UserDTO userDTO) {
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        if (userOptional.isPresent()) {
-            user.setId(id);
-            return userRepository.save(user);
-        }
-        else {
-            return null;
-        }
+        user.setName(userDTO.getName());
+        user.setEmail(userDTO.getEmail());
+        user.setRoles(userDTO.getRoles());
+        return convertToDto(userRepository.save(user));
     }
 
     public void deleteUser(UUID id) {
