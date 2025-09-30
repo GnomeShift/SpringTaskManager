@@ -1,6 +1,7 @@
 package com.gnomeshift.springtaskmanager.user;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,12 @@ public class UserService {
         return convertToDto(userRepository.save(user));
     }
 
+    @Transactional
     public void deleteUser(UUID id) {
+        if (!userRepository.existsById(id)) {
+            throw new EntityNotFoundException("User not found");
+        }
+
         userRepository.deleteById(id);
     }
 }
