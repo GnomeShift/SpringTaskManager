@@ -54,7 +54,7 @@ public class User {
     @JsonManagedReference(value = "ownerReference")
     private List<Task> ownedTasks;
 
-    @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "assignee")
     @JsonManagedReference(value = "assigneeReference")
     private List<Task> assignedTasks;
 }
