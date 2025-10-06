@@ -79,8 +79,8 @@ gradlew bootRun
 
 | API-Endpoint                          | Метод  | Роль  | Описание                     | Тело запроса                                                                                                              |
 |---------------------------------------|--------|-------|------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| {baseUrl}**/api/auth/register**       | POST   | -     | Регистрация пользователя     |                                                                                                                           |
-| {baseUrl}**/api/auth/login**          | POST   | -     | Авторизация пользователя     |                                                                                                                           |
+| {baseUrl}**/api/auth/register**       | POST   | -     | Регистрация пользователя     | `{ "name": "NAME", "email": "mail@example.com", "password": "PASSWORD", "role": "USER/MASTER/ADMIN" }`                    |
+| {baseUrl}**/api/auth/login**          | POST   | -     | Авторизация пользователя     | `{ "email": "mail@example.com", "password": "PASSWORD" }`                                                                 |
 | {baseUrl}**/api/users**               | GET    | ADMIN | Поиск всех пользователей     | -                                                                                                                         |
 | {baseUrl}**/api/users/{id}**          | GET    | USER  | Поиск пользователя по ID     | -                                                                                                                         |
 | {baseUrl}**/api/users/{id}**          | PUT    | USER  | Обновление пользователя      | `{ "name": "NAME UPDATED", "email": "mail.updated@example.com", "password": "PASSWORD" }`                                 |

@@ -21,12 +21,12 @@ public class TaskService {
     private UserRepository userRepository;
 
     private TaskDTO convertToDto(Task task) {
-        TaskDTO dto = new TaskDTO();
+        TaskDTO taskDTO = new TaskDTO();
 
-        dto.setId(task.getId());
-        dto.setTitle(task.getTitle());
-        dto.setDescription(task.getDescription());
-        dto.setStatus(task.getStatus());
+        taskDTO.setId(task.getId());
+        taskDTO.setTitle(task.getTitle());
+        taskDTO.setDescription(task.getDescription());
+        taskDTO.setStatus(task.getStatus());
 
         if (task.getOwner() != null) {
             UserDTO ownerDTO = new UserDTO();
@@ -35,7 +35,7 @@ public class TaskService {
             ownerDTO.setName(task.getOwner().getName());
             ownerDTO.setEmail(task.getOwner().getEmail());
             ownerDTO.setRoles(task.getOwner().getRoles());
-            dto.setOwnerId(ownerDTO.getId());
+            taskDTO.setOwnerId(ownerDTO.getId());
         }
 
         if (task.getAssignee() != null) {
@@ -45,10 +45,9 @@ public class TaskService {
             assigneeDTO.setName(task.getAssignee().getName());
             assigneeDTO.setEmail(task.getAssignee().getEmail());
             assigneeDTO.setRoles(task.getAssignee().getRoles());
-            dto.setAssigneeId(assigneeDTO.getId());
+            taskDTO.setAssigneeId(assigneeDTO.getId());
         }
-
-        return dto;
+        return taskDTO;
     }
 
     public List<TaskDTO> getAllTasks() {
